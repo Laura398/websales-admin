@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
 import { Product } from '../interface';
-import { ProductsService } from '../service/product.service';
 
 @Component({
   selector: 'app-products',
@@ -36,7 +35,7 @@ export class ProductsComponent implements OnInit {
   ]
 
 
-  constructor(private productsService: ProductsService, private http: HttpClient) { 
+  constructor(private http: HttpClient) { 
     this.getProducts();
   }
 
@@ -52,6 +51,10 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  refresh(): void {
+    this.getProducts();
+  }
+
   alert(element: Product): void {    
     this.http.delete(this.UrlProducts + '/' + element._id).subscribe(() => {
       this.getProducts();
@@ -59,6 +62,7 @@ export class ProductsComponent implements OnInit {
     (err) => {
       console.log(err);
     });
-    alert('Vous avez supprimé l\'utilisateur ');
+    alert('Vous avez supprimé le produit');
+    this.refresh();
   }
 }

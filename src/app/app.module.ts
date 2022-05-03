@@ -20,7 +20,6 @@ import { ModifierUserComponent } from './modify-user/modifier-user.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
-import { AlertUserComponent } from './alert-user/alert-user.component';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { AuthInterceptorService } from './service/auth-interceptor.service';
     UsersComponent,
     NavComponent,
     ModifierUserComponent,
-    AlertUserComponent,
   ],
   imports: [
     BrowserModule,

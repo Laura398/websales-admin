@@ -5,8 +5,6 @@ import { MatTable } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
 import { User } from '../interface';
 import { ModifierUserComponent } from '../modify-user/modifier-user.component';
-import { UsersService } from '../service/users.service';
-
 
 @Component({
   selector: 'app-users',
@@ -47,7 +45,7 @@ export class UsersComponent implements OnInit {
     return user.email;
   }
 
-  constructor(private usersService: UsersService, private http: HttpClient, public dialog: MatDialog) {
+  constructor( private http: HttpClient, public dialog: MatDialog) {
     this.getUser();
   }
 
@@ -63,6 +61,10 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  refresh(): void {
+    this.getUser();
+  }
+
   openDialog(element:User): void {    
     const dialogRef = this.dialog.open(ModifierUserComponent, {
       width: '300px',
@@ -73,7 +75,7 @@ export class UsersComponent implements OnInit {
         this.listUsers = JSON.parse(JSON.stringify(data));
         
         this.dataSource = this.listUsers;
-        this.getUser();
+        this.refresh();
       });
     });
   }
@@ -85,7 +87,8 @@ export class UsersComponent implements OnInit {
     (err) => {
       console.log(err);
     });
-    alert('Vous avez supprimé l\'utilisateur ');
+    alert('Vous avez supprimé l\'utilisateur ' + element.lastName + ' ' + element.firstName) 
+    this.refresh();
   }
 }
 
