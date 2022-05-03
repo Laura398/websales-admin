@@ -46,7 +46,7 @@ export class UsersComponent implements OnInit {
   }
 
   constructor( private http: HttpClient, public dialog: MatDialog) {
-    this.getUser();
+    this.refresh();
   }
 
   getUser(){
@@ -59,6 +59,7 @@ export class UsersComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.refresh();
   }
 
   refresh(): void {
@@ -72,12 +73,19 @@ export class UsersComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.http.patch(this.UrlUsers + '/' + element._id, result).subscribe(data => {
+        console.log(data  )
         this.listUsers = JSON.parse(JSON.stringify(data));
         
         this.dataSource = this.listUsers;
-        this.refresh();
+        setTimeout(() => {
+          this.refresh();
+        }, 100);
+      }, err => {
+        console.error(err)
+        alert('test')
       });
     });
+    this.refresh();
   }
 
   alert(element: User): void {    
