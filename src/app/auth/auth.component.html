@@ -1,1 +1,14 @@
-<button routerLink="products">Connexion</button>
+<mat-card>
+  <h1>Web$ales</h1>
+<form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput [formControl]="email" placeholder="websales@example.com">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Password</mat-label>
+      <input type="password" [formControl]="password" matInput placeholder="123@321">
+    </mat-form-field>
+</form>
+<button (click)="login()">Connexion</button>
+</mat-card>

@@ -1,2 +1,52 @@
-<button routerLink="/users">Liste des utilisateurs</button>
-<button routerLink="/">Deconnexion</button>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef> title </th>
+    <div>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </div>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef> description </th>
+    <div>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </div>
+  </ng-container>
+
+  <ng-container matColumnDef="base_price">
+    <th mat-header-cell *matHeaderCellDef> base_price </th>
+    <div>
+      <td mat-cell *matCellDef="let element"> {{element.base_price}} </td>
+    </div>
+  </ng-container>
+
+  <ng-container matColumnDef="beginning_of_the_auction">
+    <th mat-header-cell *matHeaderCellDef> beginning_of_the_auction </th>
+    <div>
+      <td mat-cell *matCellDef="let element"> {{element.beginning_of_the_auction}} </td>
+    </div>
+  </ng-container>
+
+  <ng-container matColumnDef="end_of_the_auction">
+    <th mat-header-cell *matHeaderCellDef> end_of_the_auction </th>
+    <div>
+      <td mat-cell *matCellDef="let element"> {{element.end_of_the_auction}} </td>
+    </div>
+  </ng-container>
+
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="alert(element)">
+        <span class="material-icons">
+          delete
+          </span>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

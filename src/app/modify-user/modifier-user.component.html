@@ -1,0 +1,16 @@
+<div id="id">
+    <mat-form-field appearance="fill">
+        <mat-label>firstName</mat-label>
+        <input matInput [(ngModel)]="dataUser.firstName">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>lastName</mat-label>
+        <input matInput [(ngModel)]="dataUser.lastName">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>email</mat-label>
+        <input matInput [(ngModel)]="dataUser.email">
+    </mat-form-field>
+    <button mat-button (click)="closeDialog()">Annuler</button>
+    <button mat-button [mat-dialog-close]="dataUser" cdkFocusInitial>Confirmer</button>
+</div>
